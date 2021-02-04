@@ -72,14 +72,14 @@ public class AWSS3ServiceImpl implements AWSS3Service {
         expiration.setTime(expTimeMillis);
 
         // Generate the presigned URL.
-        System.out.println("Generating pre-signed URL.");
+        LOGGER.info("Generating pre-signed URL.");
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
                 new GeneratePresignedUrlRequest(bucketName, uniqueFileName)
                         .withMethod(HttpMethod.GET)
                         .withExpiration(expiration);
         URL url = amazonS3.generatePresignedUrl(generatePresignedUrlRequest);
 
-        System.out.println("Pre-Signed URL: " + url.toString());
+        LOGGER.info("Pre-Signed URL: " + url.toString());
         return url.toString();
 	}
 }
